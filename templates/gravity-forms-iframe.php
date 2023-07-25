@@ -11,6 +11,34 @@ body {
 }
 </style>
 
+<?php
+// Check for "site" querystring and assign to variable
+$site = ( isset( $_GET['site'] ) ) ? $_GET['site'] : 'seattlegood';
+
+if ( $site != '' ):
+
+	// Check whether site is being served locally or from a public server
+	$is_local_server = ( $_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_NAME'] === '127.0.0.1' || strpos($_SERVER['HTTP_HOST'], '.local') !== false );
+
+	switch($site):
+
+		// Northwest Sewn
+		case 'northwestsewn':
+			if ( $is_local_server ) {
+				$domain = 'https://northwest-sewn.local';
+			} else {
+				$domain = 'https://northwestsewn.org';
+			}
+			$form_style = $domain . '/wp-content/themes/northwestsewn/css/gravity-forms.css';	
+			break;
+
+	endswitch;
+
+endif;
+?>
+
+<link rel="stylesheet" href="<?php echo $form_style; ?>" type="text/css" media="all" />
+
 <script type='text/javascript' src='<?php echo get_stylesheet_directory_uri(); ?>/js/iframeResizer.contentWindow.min.js' id='iframeResizer'></script>
 
 <?php do_action( 'gfiframe_head', $form_id, $form ); ?>
