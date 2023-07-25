@@ -10,6 +10,9 @@ body {
 	font-size: 13px;
 }
 </style>
+
+<script type='text/javascript' src='<?php echo get_stylesheet_directory_uri(); ?>/js/iframeResizer.contentWindow.min.js' id='iframeResizer'></script>
+
 <?php do_action( 'gfiframe_head', $form_id, $form ); ?>
 </head>
 <body>
